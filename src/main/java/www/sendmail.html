@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>Eina per enviar un correu electrònic</title>
+</head>
+<body>
+	<img alt="logo InsPalamós" src="img/logo.png">
+	<form action="/MailSender" method="post">
+		<p>
+		<label for="smtp_server">Servidor SMTP:</label>
+		<br>
+		<input type="text" id="smtp_server" name="smtp_server" required value="smtp.freesmtpservers.com"><br>
+		alt1.gmail-smtp-in.l.google.com<br>
+		smtp.freesmtpservers.com<br>
+		<a href="https://www.wpoven.com/tools/free-smtp-server-for-testing">Link freesmtpservers</a>
+		</p>
+		<p>
+		<label for="smtp_port">Port SMTP:</label>
+		<br>
+		<input type="number" id="smtp_port" name="smtp_port" required value="25">
+		</p>
+		<p>
+		<label for="from">From:</label>
+		<br>
+		<input type="email" id="from" name="from" required>
+		</p>
+		<p>
+		<label for="to">To:</label>
+		<br>
+		<input type="email" id="to" name="to" required>
+		</p>
+		<p>
+		<label for="subject">Subject:</label>
+		<br>
+		<input type="text" id="subject" name="subject" required>
+		</p>
+		<p>
+		<label for="body">Body:</label>
+		<br>
+		<textarea id="body" name="body" rows="4" cols="50" required></textarea>
+		</p>
+		<input type="submit" value="Enviar">
+	</form>
+</body>
+</html>
