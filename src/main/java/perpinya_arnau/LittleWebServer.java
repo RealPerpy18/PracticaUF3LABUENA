@@ -29,7 +29,7 @@ public class LittleWebServer {
 			do {
 				// Esperar connexió
 				Socket sck = serverSck.accept();
-				//new Thread(new HTTPConnection(sck)).start();
+				new Thread(new HTTPConnection(sck)).start();
 				System.out.println("Connexió: " + sck.getRemoteSocketAddress().toString());
 
 			} while (true);

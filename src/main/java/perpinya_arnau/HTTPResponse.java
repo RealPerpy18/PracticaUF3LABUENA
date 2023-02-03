@@ -198,8 +198,8 @@ public class HTTPResponse {
 	 * @return Matriu amb els paràmetres
 	 * @throws Exception
 	 */
-	private HashMap<String,String> getParams(String query) throws Exception {
+	/*private HashMap<String,String> getParams(String query) throws Exception {
 
 		return params;
-	}
+	}*/
 }
