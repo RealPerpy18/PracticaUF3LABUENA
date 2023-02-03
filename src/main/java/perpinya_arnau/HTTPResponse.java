@@ -39,9 +39,11 @@ public class HTTPResponse {
 	 * @throws Exception
 	 */
 	public HTTPResponse(Socket sck) throws Exception {
-
+		this.sck=sck;
 	}
-	
+
+
+
 	/**
 	 * Prepara la resposta d'una petició HTTP i l'envia.
 	 * Sols és capaç de gestionar els mètodes GET i POST.
@@ -50,6 +52,15 @@ public class HTTPResponse {
 	 * @throws Exception
 	 */
 	public void sendResponse(HTTPRequest request) throws Exception {
+		if (request.getMethod().equalsIgnoreCase("get")){
+			processGET(request);
+		}
+		else if(request.getMethod().equalsIgnoreCase("post")){
+			processPOST(request);
+		}
+		else{
+
+		}
 	}
 	
 	/**
@@ -59,6 +70,7 @@ public class HTTPResponse {
 	 * @throws Exception
 	 */
 	private void processGET(HTTPRequest request) throws Exception {
+
 	}
 
 	/**
@@ -68,6 +80,7 @@ public class HTTPResponse {
 	 * @throws Exception
 	 */
 	private void processPOST(HTTPRequest request) throws Exception {
+
 	}
 
 	
@@ -193,7 +206,6 @@ public class HTTPResponse {
 	
 	/**
 	 * Obté els paràmetres (key, value) d'una query d'una URL
-	 * 
 	 * @param query Part query de la URL
 	 * @return Matriu amb els paràmetres
 	 * @throws Exception

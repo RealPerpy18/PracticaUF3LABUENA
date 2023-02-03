@@ -29,7 +29,8 @@ public class HTTPConnection implements Runnable {
 	 * @throws Exception
 	 */
 	public HTTPConnection(Socket sck) throws Exception {
-		sck=this.sck;
+		this.sck=sck;
+		response=new HTTPResponse(sck);
 	}
 	
 	/**
@@ -67,7 +68,8 @@ public class HTTPConnection implements Runnable {
 	 * @throws Exception
 	 */
 	private void processRequest() throws Exception {
-		//response.sendResponse(request);
+		URL url=new URL("http",sck.getLocalAddress().getHostAddress(), sck.getPort(),"www/sendmail.html") ;
+		response.sendResponse(new HTTPRequest("get",url,"1.1",new HashMap<>(1),""));
 	}
 	
 	/**
@@ -94,10 +96,14 @@ public class HTTPConnection implements Runnable {
 	 * @return
 	 * @throws Exception
 	 */
-	/*private String readLine() throws Exception {
+	private String readLine() throws Exception {
+
+		String line =in.readLine();
 		if (line != null) debug(line);
 		return line;
-	}*/
+	}
+
+
 	
 	/**
 	 * Mostra per consola un text.
