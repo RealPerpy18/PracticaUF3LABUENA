@@ -17,10 +17,9 @@ public class HTTPRequest {
 	private String version;
 	private HashMap<String,String> headers;
 	private String body;
-	
 	/**
 	 * Constructor
-	 * 
+	 *
 	 * @param method Mètode HTTP
 	 * @param url URL
 	 * @param version Versió HTTP: HTTP/1.1
@@ -28,9 +27,16 @@ public class HTTPRequest {
 	 * @param body Body
 	 * @throws Exception
 	 */
-	public HTTPRequest(String method, URL url, String version, HashMap<String,String> headers, String body) throws Exception {
 
+	public HTTPRequest(String method, URL url, String version, HashMap<String, String> headers, String body) {
+		this.method = method;
+		this.url = url;
+		this.version = version;
+		this.headers = headers;
+		this.body = body;
 	}
+
+
 
 	public String getMethod() {
 		return method;

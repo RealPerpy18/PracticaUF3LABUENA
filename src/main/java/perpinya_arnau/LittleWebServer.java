@@ -32,6 +32,7 @@ public class LittleWebServer {
 				new Thread(new HTTPConnection(sck)).start();
 				System.out.println("Connexió: " + sck.getRemoteSocketAddress().toString());
 
+
 			} while (true);
 			//TODO Connexió establerta
 

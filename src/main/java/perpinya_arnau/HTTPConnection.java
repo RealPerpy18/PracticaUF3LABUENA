@@ -30,7 +30,7 @@ public class HTTPConnection implements Runnable {
 	 */
 	public HTTPConnection(Socket sck) throws Exception {
 		this.sck=sck;
-		response=new HTTPResponse(sck);
+		//response=new HTTPResponse(sck);
 	}
 	
 	/**
@@ -63,13 +63,37 @@ public class HTTPConnection implements Runnable {
 	 * Processa una petició.
 	 * Llegeix del socket la petició i construeix un HTTPRequest.
 	 * El camp body del HTTPRequest sols es carrega si Content-Type: application/x-www-form-urlencoded.
-	 * Crea objecte HTTPRequest i demana enviar resposta. 
-	 * 
+	 * Crea objecte HTTPRequest i demana enviar resposta.
+	 *
 	 * @throws Exception
 	 */
 	private void processRequest() throws Exception {
-		URL url=new URL("http",sck.getLocalAddress().getHostAddress(), sck.getPort(),"www/sendmail.html") ;
-		response.sendResponse(new HTTPRequest("get",url,"1.1",new HashMap<>(1),""));
+		in=new BufferedReader(new InputStreamReader(sck.getInputStream()));
+		HashMap<String ,String >hm=new HashMap<>();
+		String[]split2=new String[3];
+		int i=0;
+		while (readLine()!=null)
+		{
+			String lec=readLine();
+			if(lec.contains(":")&&!lec.equals("")) {
+				String[] split = lec.split(":");
+				hm.put(split[0], split[1].trim());
+
+			}
+		}
+		if(hm.get("Accept").contains("application/x-www-form-urlencoded")){
+
+			URL url=new URL("HTTP",hm.get("Host").trim(), sck.getPort(),"/sendmail.html");
+			response.sendResponse(new HTTPRequest("GET",url,"1.1",hm,""));
+		}
+		else{
+			URL url=new URL("HTTP",hm.get("Host").trim(), sck.getPort(), "/sendmail.html");
+			response.sendResponse(new HTTPRequest("GET",url,"1.1",hm,""));
+		}
+
+		/*String localadr=sck.getLocalAddress().toString();
+		URL url=new URL("http",localadr.replace("/",""),80,"sendmail.html") ;
+		response.sendResponse(new HTTPRequest("POST",url,"1.1",hm,"sgffsgf"));*/
 	}
 	
 	/**
@@ -97,7 +121,6 @@ public class HTTPConnection implements Runnable {
 	 * @throws Exception
 	 */
 	private String readLine() throws Exception {
-
 		String line =in.readLine();
 		if (line != null) debug(line);
 		return line;

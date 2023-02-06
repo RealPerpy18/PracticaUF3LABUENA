@@ -59,7 +59,7 @@ public class HTTPResponse {
 			processPOST(request);
 		}
 		else{
-
+			sendMethodNotAllowed();
 		}
 	}
 	
