@@ -11,7 +11,7 @@ import java.util.HashMap;
  * Llegeix una petició HTTP, la processa i s'encarrega
  * d'enviar resposta.
  * Sols processa una petició, després d'enviar la resposta tanca la connexió.
- * 
+ *
  * @author pererdg
  *
  */
@@ -20,11 +20,11 @@ public class HTTPConnection implements Runnable {
 	private Socket sck;
 	private BufferedReader in;
 	private HTTPResponse response;
-	
-	
+
+
 	/**
 	 * Constructor
-	 * 
+	 *
 	 * @param sck Socket de la connexió HTTP
 	 * @throws Exception
 	 */
@@ -32,7 +32,7 @@ public class HTTPConnection implements Runnable {
 		this.sck=sck;
 		//response=new HTTPResponse(sck);
 	}
-	
+
 	/**
 	 * Punt d'entrada del fil.
 	 * Processa la petició i després tanca recursos.
@@ -58,7 +58,7 @@ public class HTTPConnection implements Runnable {
 			}
 		}
 	}
-	
+
 	/**
 	 * Processa una petició.
 	 * Llegeix del socket la petició i construeix un HTTPRequest.
@@ -93,13 +93,13 @@ public class HTTPConnection implements Runnable {
 		URL url=new URL("http",localadr.replace("/",""),80,"sendmail.html") ;
 		response.sendResponse(new HTTPRequest("POST",url,"1.1",hm,"sgffsgf"));*/
 	}
-	
+
 	/**
 	 * Llegeix el body de la petició.
 	 * Aquest mètode carrega el body en un String, per tant no és apte
 	 * per a dades que no siguin de tipus text, com per exemple un fitxer.
 	 * Es pot utilitzar per Content-Type: application/x-www-form-urlencoded.
-	 * 
+	 *
 	 * @param length Longitud del body (Content-Length)
 	 * @return Body
 	 * @throws Exception
@@ -110,11 +110,11 @@ public class HTTPConnection implements Runnable {
 		debug(body);
 		return body;
 	}
-	
+
 	/**
 	 * Llegeix del socket una línia.
 	 * Fa debug i mostra el que ha llegit per consola.
-	 * 
+	 *
 	 * @return
 	 * @throws Exception
 	 */
@@ -125,10 +125,10 @@ public class HTTPConnection implements Runnable {
 	}
 
 
-	
+
 	/**
 	 * Mostra per consola un text.
-	 * 
+	 *
 	 * @param txt Text a mostrar
 	 */
 	private void debug(String txt) {

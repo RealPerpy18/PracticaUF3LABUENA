@@ -6,7 +6,7 @@ import java.util.HashMap;
 /**
  * Dades d'una petició HTTP.
  * El body sols es pot carregar amb Content-Type: application/x-www-form-urlencoded.
- * 
+ *
  * @author pererdg
  *
  */
@@ -49,7 +49,7 @@ public class HTTPRequest {
 	public String getVersion() {
 		return version;
 	}
-	
+
 	public HashMap<String,String> getHeaders() {
 		return headers;
 	}

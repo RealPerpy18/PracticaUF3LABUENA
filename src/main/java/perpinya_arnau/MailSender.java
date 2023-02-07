@@ -7,7 +7,7 @@ import java.net.Socket;
 
 /**
  * Utilitat per enviar correus electrònics via SMTP
- * 
+ *
  * @author pererdg
  *
  */
@@ -22,7 +22,7 @@ public class MailSender {
 
 	/**
 	 * Constructor
-	 * 
+	 *
 	 * @param smtp_server
 	 * @param smtp_port
 	 */
@@ -30,10 +30,10 @@ public class MailSender {
 		this.smtp_server = smtp_server;
 		this.smtp_port = smtp_port;
 	}
-	
+
 	/**
 	 * Obrir connexió a servidor SMTP i enviar HELO
-	 * 
+	 *
 	 * @param helo Identificació HELO
 	 * @param printer PrintStream on s'enviarà la informació de la connexió
 	 * @throws Exception
@@ -50,10 +50,10 @@ public class MailSender {
 		// HELO
 		writeRead("HELO " + helo);
 	}
-	
+
 	/**
 	 * Enviar un missatge
-	 * 
+	 *
 	 * @param mail
 	 * @throws Exception
 	 */
@@ -77,7 +77,7 @@ public class MailSender {
 
 	/**
 	 * Tancar la connexió SMTP
-	 * 
+	 *
 	 * @throws Exception
 	 */
 	public void close() throws Exception {
@@ -87,10 +87,10 @@ public class MailSender {
 		printer = null;
 		sck.close();
 	}
-	
+
 	/**
 	 * Legir de l'stream de la connexió SMTP
-	 * 
+	 *
 	 * @throws Exception
 	 */
 	private void read() throws Exception {
@@ -100,10 +100,10 @@ public class MailSender {
 			if (printer != null) printer.println(">> " + line);
 		} while (line != null && line.substring(3, 4).equals("-"));
 	}
-	
+
 	/**
 	 * Escriure a l'stream de la connexió SMTP
-	 * 
+	 *
 	 * @param txt
 	 * @throws Exception
 	 */
@@ -111,10 +111,10 @@ public class MailSender {
 		out.println(txt);
 		if (printer != null) printer.println("<< " + txt);
 	}
-	
+
 	/**
 	 * Escriure i llegir de la connexió SMTP
-	 * 
+	 *
 	 * @param txt
 	 * @throws Exception
 	 */
@@ -124,5 +124,5 @@ public class MailSender {
 	}
 
 
-	
+
 }
