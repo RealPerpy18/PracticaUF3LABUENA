@@ -70,8 +70,6 @@ public class HTTPConnection implements Runnable {
 	private void processRequest() throws Exception {
 		in=new BufferedReader(new InputStreamReader(sck.getInputStream()));
 		HashMap<String ,String >hm=new HashMap<>();
-		String[]split2=new String[3];
-		int i=0;
 		while (readLine()!=null)
 		{
 			String lec=readLine();

@@ -54,6 +54,7 @@ public class HTTPResponse {
 	public void sendResponse(HTTPRequest request) throws Exception {
 		if (request.getMethod().equalsIgnoreCase("get")){
 			processGET(request);
+
 		}
 		else if(request.getMethod().equalsIgnoreCase("post")){
 			processPOST(request);
@@ -70,7 +71,7 @@ public class HTTPResponse {
 	 * @throws Exception
 	 */
 	private void processGET(HTTPRequest request) throws Exception {
-
+		out.println(request.getUrl());
 	}
 
 	/**
