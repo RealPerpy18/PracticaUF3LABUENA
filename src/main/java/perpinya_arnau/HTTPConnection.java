@@ -93,6 +93,7 @@ public class HTTPConnection implements Runnable {
 		/*String localadr=sck.getLocalAddress().toString();
 		URL url=new URL("http",localadr.replace("/",""),80,"sendmail.html") ;
 		response.sendResponse(new HTTPRequest("POST",url,"1.1",hm,"sgffsgf"));*/
+		//PUTAAAMAAADREEEJODEEEEER
 	}
 
 	/**
