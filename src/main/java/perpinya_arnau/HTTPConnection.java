@@ -30,7 +30,7 @@ public class HTTPConnection implements Runnable {
 	 */
 	public HTTPConnection(Socket sck) throws Exception {
 		this.sck=sck;
-		//response=new HTTPResponse(sck);
+		response=new HTTPResponse(sck);
 	}
 
 	/**
@@ -73,22 +73,23 @@ public class HTTPConnection implements Runnable {
 		while (readLine()!=null)
 		{
 			String lec=readLine();
-			if(lec.contains(":")&&!lec.equals("")) {
-				String[] split = lec.split(":");
-				hm.put(split[0], split[1].trim());
-
+			if(!(lec.equals(""))) {
+				if(lec.contains(":")) {
+					String[] split = lec.split(":");
+					hm.put(split[0], split[1].trim());
+				}
 			}
 		}
 		if(hm.get("Accept").contains("application/x-www-form-urlencoded")){
 
 			URL url=new URL("HTTP",hm.get("Host").trim(), sck.getPort(),"/sendmail.html");
-			response.sendResponse(new HTTPRequest("GET",url,"1.1",hm,""));
+			response.sendResponse(new HTTPRequest("GET",url,"1.1",hm,readBody(123)));
 		}
 		else{
-			URL url=new URL("HTTP",hm.get("Host").trim(), sck.getPort(), "/sendmail.html");
+			URL url=new URL("HTTP",hm.get("Host").trim(), sck.getPort(), "www/sendmail.html");
 			response.sendResponse(new HTTPRequest("GET",url,"1.1",hm,""));
 		}
-
+//if headers.get("content-type")
 		/*String localadr=sck.getLocalAddress().toString();
 		URL url=new URL("http",localadr.replace("/",""),80,"sendmail.html") ;
 		response.sendResponse(new HTTPRequest("POST",url,"1.1",hm,"sgffsgf"));*/
@@ -123,8 +124,6 @@ public class HTTPConnection implements Runnable {
 		if (line != null) debug(line);
 		return line;
 	}
-
-
 
 	/**
 	 * Mostra per consola un text.

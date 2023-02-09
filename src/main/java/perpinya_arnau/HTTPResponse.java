@@ -2,6 +2,7 @@ package perpinya_arnau;
 
 import java.io.File;
 import java.io.FileInputStream;
+import java.io.FileOutputStream;
 import java.io.PrintStream;
 import java.net.Socket;
 import java.net.URLDecoder;
@@ -25,8 +26,9 @@ public class HTTPResponse {
 	// Directori arrel del servidor relatiu al directori d'execució del servidor.
 	private static final String ROOT = "./www";
 	// Identificació per la comanda HELO SMTP.
-	private static final String HELO = "inspalamos.cat";
+	private static final String HELOs = "inspalamos.cat";
 	// Fitxer/recurs que identifica que cal enviar un mail.
+
 	private static final String MAILSENDER = "MailSender";
 
 	private Socket sck;
@@ -40,6 +42,8 @@ public class HTTPResponse {
 	 */
 	public HTTPResponse(Socket sck) throws Exception {
 		this.sck=sck;
+		out=new PrintStream(this.sck.getOutputStream(), true);
+
 	}
 
 
@@ -71,7 +75,8 @@ public class HTTPResponse {
 	 * @throws Exception
 	 */
 	private void processGET(HTTPRequest request) throws Exception {
-		out.println(request.getUrl());
+		//Hashmap url.getquery
+		sendResponse(request.getUrl().getPath(),request.getHeaders());
 	}
 
 	/**
@@ -112,6 +117,11 @@ public class HTTPResponse {
 	 * @throws Exception
 	 */
 	private void sendFile(String path) throws Exception {
+
+
+
+		sendOk();
+		out.println();
 
 	}
 
@@ -193,6 +203,7 @@ public class HTTPResponse {
 	 * @throws Exception
 	 */
 	private void writeLine(String text) throws Exception {
+		out.println(text);
 		debug(text);
 	}
 
